@@ -2,15 +2,24 @@ package model;
 
 import java.util.Random;
 
-public class BaseBallGame {
+public class BaseballGame {
 	private int[]key = new int[3];
 	private int[]guess = new int[3];
 	private int ballCount = 0;
 	private int strikeCount = 0;
 	
-	public BaseBallGame(){
+	public BaseballGame(){
 		generateKey();
 	}
+
+	public BaseballGame(int k0, int k1, int k2){
+		key[0] = k0;
+		key[1] = k1;
+		key[2] = k2;
+
+	}
+
+	
 
 	private void  generateKey(){
 		Random r = new Random();
@@ -34,7 +43,23 @@ public class BaseBallGame {
 	public void setGuess(int pos, int value){
 		assert 0 <=pos && pos <3 : "setGuess out of range in position";
 		guess[pos] = value;
+	}
+
+	public void computeBallsStrikes(){
+		strikeCount = 0;
+		for (int i = 0; i <3; i++){
+			if (key[i] == guess[i]){
+				strikeCount++;
+			}
+		}
 		
+		ballCount = 0;
+		for (int i = 0; i < 3; i++){
+			for (int n = 0; n<3; n++){
+				if (i == n) continue;
+				if (key[i] == guess[n]) ballCount++;
+			} 
+		}
 	}
 
 	public int getBallCount(){
