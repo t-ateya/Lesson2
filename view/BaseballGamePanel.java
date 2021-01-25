@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import controller.BaseballKeyListener;
 import model.BaseballGame;
 
 import java.awt.GridLayout;
@@ -17,6 +18,10 @@ import java.awt.GridLayout;
 
 
 public class BaseballGamePanel {
+
+	public enum GameState {
+		READY, PLAYING, GAMEOVER
+	}
 	private JFrame window;
 	private BaseballCanvas canvas;
 	private JTextField gameKeyField = new JTextField();
@@ -24,6 +29,8 @@ public class BaseballGamePanel {
 	private JButton[] digitButtons;
 	private JButton playButton = new JButton("Play Ball~~");
 	private JButton exitButton = new JButton("Exit");
+	private GameState gameState = GameState.PLAYING;
+
 	private BaseballGame baseball; 
 
 	public BaseballGamePanel(JFrame window){
@@ -52,17 +59,23 @@ public class BaseballGamePanel {
 		JPanel southPanel = new JPanel();
 		southPanel.setLayout(new GridLayout(4,3));
 
+		BaseballKeyListener keyListener = new BaseballKeyListener(this);
+
 		digitButtons = new JButton[10];
 		for (int i = 0; i<10; i++){
 			digitButtons[i] = new JButton("" + i);
 			southPanel.add(digitButtons[i]);
+			digitButtons[i].addActionListener(keyListener);
 		}
+		playButton.addActionListener(keyListener);
+		exitButton.addActionListener(keyListener);
+	
 		southPanel.add(playButton);
 		southPanel.add(exitButton);
 		cp.add(BorderLayout.SOUTH, southPanel);
 
 		for (var b: digitButtons){
-			b.setEnabled(false);
+			//b.setEnabled(false);
 		}
 	}
 
@@ -90,11 +103,20 @@ public class BaseballGamePanel {
 		return guessField;
 	}
 
-	public BaseballCanvas getBaseballCanvas(){
+	public BaseballCanvas getCanvas(){
 		return canvas;
 	}
 
 	public JFrame getWindow(){
 		return window;
 	}
+
+	public GameState getGameState(){
+		return gameState;
+	}
+
+	public void setGameState(GameState state){
+		this.gameState = state;
+	}
+
 }
