@@ -40,6 +40,14 @@ public class MenuScreen {
 			window.pack();
 			window.setVisible(true);
 		});
+
+		drawingButton.addActionListener(event->{
+			window.getContentPane().removeAll();
+			var panel = new TriangleDrawingPanel(window);
+			panel.init();
+			window.pack();
+			window.revalidate();
+		});
 		
 
 	}

@@ -33,9 +33,10 @@ public class BaseballKeyListener implements ActionListener {
 			panel.getGameKeyField().setText(keyString);
 			panel.getGuessField().setText("");
 			//enable digit buttons
-			for (var b: panel.getDigButtons()){
+			for (var b: panel.getDigitButtons()) {
 				b.setEnabled(true);
 			}
+			panel.getCanvas().setBallStrikeCount(0, 0);
 			panel.getCanvas().repaint();
 		}else if (button == panel.getExitButton()){
 			JFrame window = panel.getWindow();
