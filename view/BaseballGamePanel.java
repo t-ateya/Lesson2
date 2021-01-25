@@ -48,8 +48,8 @@ public class BaseballGamePanel {
 		northPanel.add(gameKeyField);
 		northPanel.add(new JLabel("Your Guess: "));
 		northPanel.add(guessField);
-		gameKeyField.setEditable(false); //Read-Only mode
-		guessField.setEditable(false);
+		gameKeyField.setEditable(true); //Read-Only mode
+		guessField.setEditable(true);
 
 		cp.add(BorderLayout.NORTH, northPanel);
 
@@ -79,8 +79,12 @@ public class BaseballGamePanel {
 		}
 	}
 
-	public BaseballGame getBaseballGame(){
+	public BaseballGame getBaseball(){
 		return baseball;
+	}
+
+	public void setBaseball(BaseballGame baseball){
+		this.baseball = baseball;
 	}
 
 	public JButton getPlayButton(){
@@ -91,7 +95,7 @@ public class BaseballGamePanel {
 		return exitButton;
 	}
 	
-	public JButton[] getDigButtons(){
+	public JButton[] getDigitButtons(){
 		return digitButtons;
 	}
 
