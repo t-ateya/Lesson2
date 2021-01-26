@@ -9,9 +9,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 public class TriangleCanvas extends JPanel {
 	private TriangleDrawingPanel panel;
+	private ArrayList<Triangle> shapes = new ArrayList<>();
 
 	public TriangleCanvas(TriangleDrawingPanel panel){
 		this.panel = panel;
@@ -24,32 +26,15 @@ public class TriangleCanvas extends JPanel {
 			super.paintComponent(g);
 			Graphics2D g2 = (Graphics2D)g;
 
-			Triangle t1 = new Triangle();
-			t1.setPos(0, 10, 10);
-			t1.setPos(1, 100, 100);
-			t1.setPos(2, 150, 100);
-			t1.setColor(Color.yellow);
-			t1.render(g2);
-
-			t1.setPos(0, 50, 50);
-			t1.setPos(1, 50, 150);
-			t1.setPos(2, 250, 100);
-			t1.setColor(Color.red);
-			t1.render(g2);
-
-			Triangle t2 = new Triangle();
-			t2.setPos(0, 200, 200);
-			t2.setColor(Color.white);
-			t2.render(g2);
-
-			Triangle t3 = new Triangle();
-			t3.setPos(0, 200, 200);
-			t3.setPos(1, 400, 100);
-			t3.setColor(Color.blue);
-			t3.render(g2);
-
+			for (var s: shapes){
+				s.render(g2);
+			}
 
 		}
+
+	public ArrayList<Triangle> getShapes(){
+		return shapes;
+	}
 
 	
 	

@@ -61,17 +61,16 @@ public class TriangleDrawingPanel {
 
 		canvas = new TriangleCanvas(this);
 		cp.add(BorderLayout.CENTER, canvas);
-		TriangleMouseEvent mouseEvent = new TriangleMouseEvent();
-		canvas.addMouseListener(mouseEvent);
-		canvas.addMouseMotionListener(mouseEvent);
+		
 
 		// attach event listener
-		var listener = new TriangleEventListener(this);
+		final var listener = new TriangleEventListener(this);
 		exitButton.addActionListener(listener);
 		clearButton.addActionListener(listener);
 		redButton.addActionListener(listener);
 		yellowButton.addActionListener(listener);
 		blueButton.addActionListener(listener);
+		canvas.addMouseListener(listener);
 
 	}
 
@@ -102,6 +101,8 @@ public class TriangleDrawingPanel {
 	public JButton getExitButton() {
 		return exitButton;
 	}
+
+	
 
 }
 
