@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +11,7 @@ import view.TriangleDrawingPanel;
 
 public class TriangleEventListener implements ActionListener {
 	private TriangleDrawingPanel panel;
+	private Color color = Color.white;
 
 	public TriangleEventListener (TriangleDrawingPanel panel){
 		this.panel = panel;
@@ -25,16 +27,14 @@ public class TriangleEventListener implements ActionListener {
 			menu.init();
 			window.pack();
 			window.revalidate();
-			
-
 		}else if (source == panel.getClearButton()){
 			System.out.println("Clear");
 		}else if (source == panel.getRedButton()){
-			System.out.println("Red");
+			color = Color.red;
 		}else if (source == panel.getYellowButton()){
-			System.out.println("Yellow");
+			color = Color.yellow;
 		}else if (source == panel.getBlueButton())
-			System.out.println("Blue");
+			color = color.blue;
 	}
 	
 }

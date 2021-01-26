@@ -3,6 +3,9 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -14,7 +17,6 @@ import javax.swing.border.TitledBorder;
 
 import controller.TriangleEventListener;
 
-
 public class TriangleDrawingPanel {
 
 	private JFrame window;
@@ -25,11 +27,11 @@ public class TriangleDrawingPanel {
 	private JButton clearButton = new JButton("Clear");
 	private JButton exitButton = new JButton("Exit");
 
-	public TriangleDrawingPanel(JFrame window){
+	public TriangleDrawingPanel(JFrame window) {
 		this.window = window;
 	}
 
-	public void init(){
+	public void init() {
 		Container cp = window.getContentPane();
 
 		JPanel southPanel = new JPanel();
@@ -47,22 +49,23 @@ public class TriangleDrawingPanel {
 		buttonPanel.add(exitButton);
 		southPanel.add(buttonPanel);
 
-		//radio group
+		// radio group
 		ButtonGroup colorGroup = new ButtonGroup();
 		colorGroup.add(redButton);
 		colorGroup.add(yellowButton);
 		colorGroup.add(blueButton);
 
-
-
-		//titled border for radio
+		// titled border for radio
 		TitledBorder title = BorderFactory.createTitledBorder("Color");
 		radioPanel.setBorder(title);
 
 		canvas = new TriangleCanvas(this);
 		cp.add(BorderLayout.CENTER, canvas);
+		TriangleMouseEvent mouseEvent = new TriangleMouseEvent();
+		canvas.addMouseListener(mouseEvent);
+		canvas.addMouseMotionListener(mouseEvent);
 
-		//attach event listener
+		// attach event listener
 		var listener = new TriangleEventListener(this);
 		exitButton.addActionListener(listener);
 		clearButton.addActionListener(listener);
@@ -70,35 +73,81 @@ public class TriangleDrawingPanel {
 		yellowButton.addActionListener(listener);
 		blueButton.addActionListener(listener);
 
-
 	}
 
-	public JFrame getWindow(){
+	public JFrame getWindow() {
 		return window;
 	}
 
-	public TriangleCanvas getCanvas(){
+	public TriangleCanvas getCanvas() {
 		return canvas;
 	}
-	
-	public JRadioButton getRedButton(){
+
+	public JRadioButton getRedButton() {
 		return redButton;
 	}
 
-	public JRadioButton getYellowButton(){
+	public JRadioButton getYellowButton() {
 		return yellowButton;
 	}
 
-	public JRadioButton getBlueButton(){
+	public JRadioButton getBlueButton() {
 		return blueButton;
 	}
 
-	public JButton getClearButton (){
+	public JButton getClearButton() {
 		return clearButton;
 	}
 
-	public JButton getExitButton(){
+	public JButton getExitButton() {
 		return exitButton;
 	}
-	
+
 }
+
+/*class TriangleMouseEvent implements MouseListener, MouseMotionListener {
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		System.out.println("Clicked: " + e.getX() + ", " + e.getY());
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		System.out.println("Pressed: " + e.getX() + ", " + e.getY());
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		System.out.println("Released: " + e.getX() + ", " + e.getY());
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		System.out.println("Entered: " + e.getX() + ", " + e.getY());
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		System.out.println("Exited: " + e.getX() + ", " + e.getY());
+
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		System.out.println("Dragged: " + e.getX() + ", " + e.getY());
+
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		System.out.println("Moved: " + e.getX() + ", " + e.getY());
+
+	}
+		
+}
+*/
