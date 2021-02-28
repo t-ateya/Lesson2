@@ -6,7 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
-//This class is used for drawing purpose
+//-This class is used for drawing purpose
 
 public class BaseballCanvas extends JPanel {
 	public static int WIDTH = 500;
