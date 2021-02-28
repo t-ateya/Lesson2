@@ -63,7 +63,7 @@ public class TriangleDrawingPanel {
 		cp.add(BorderLayout.CENTER, canvas);
 		
 
-		// attach event listener
+		// attach an event listener
 		final var listener = new TriangleEventListener(this);
 		exitButton.addActionListener(listener);
 		clearButton.addActionListener(listener);
