@@ -48,7 +48,7 @@ public class BaseballGamePanel {
 		northPanel.add(gameKeyField);
 		northPanel.add(new JLabel("Your Guess: "));
 		northPanel.add(guessField);
-		gameKeyField.setEditable(true); //Read-Only mode
+		gameKeyField.setEditable(true); //Read Only mode
 		guessField.setEditable(true);
 
 		cp.add(BorderLayout.NORTH, northPanel);
