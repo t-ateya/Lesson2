@@ -2,7 +2,7 @@ package model;
 
 import java.util.Random;
 
-public class BaseballGame {
+public class BaseballGame{
 	private int[]key = new int[3];
 	private int[]guess = new int[3];
 	private int ballCount = 0;
